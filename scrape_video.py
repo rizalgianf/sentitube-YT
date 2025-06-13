@@ -6,6 +6,7 @@ from tensorflow.keras.models import load_model
 import numpy as np
 import os
 import re
+from flask_cors import CORS
 
 # Load environment variables from .env file
 load_dotenv()
@@ -20,6 +21,7 @@ lstm_model = load_model(LSTM_MODEL_PATH)
 LABELS = ["negatif", "netral", "positif"]  # urutkan sesuai label encoder training
 
 app = Flask(__name__)
+CORS(app)  # Izinkan akses dari semua origin
 
 def extract_video_id(url):
     """
